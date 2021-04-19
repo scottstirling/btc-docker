@@ -1,0 +1,24 @@
+version: "3.8"
+services:
+
+  btc-docker:
+    build:       
+      context: .
+    image: btc-docker:latest
+    shm_size: 2g 
+    ports:
+      - "${HOST_PORT:-8333}:${CONTAINER_PORT:-8333}"
+      # - "${HOST_PORT:-8332}:${CONTAINER_PORT:-8332}"
+    environment:
+      - TZ=${CONTAINER_TZ:-America/New_York}
+    volumes:
+      - ./data:/data:rw
+    networks:
+      - bitcoind
+    stop_grace_period: 3s
+
+    # NOTE: see docker-compose.override.yml or specify additional override files for container:host ports 
+    # and other runtime overrides.
+
+networks:
+  bitcoind:
