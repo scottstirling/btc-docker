@@ -17,14 +17,14 @@
 To build the Docker image locally:
 
  * Download and install latest stable release of Docker Desktop for your OS (or just Docker if on Linux) from https://docs.docker.com/get-docker/
- * In a terminal (or PowerShell or Cygwin on Windows), cd into the flash-docker-rdp project directory.
+ * In a terminal (or PowerShell or Cygwin on Windows), cd into the project directory.
 
 ```
 export DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1
 
 docker-compose build
 ```
-[output will update to console for 8 - 20 minutes to build the image, depending on network and host resources]
+[output will update to console for 40 - 90 minutes to build the image, depending on network and host resources]
 
 Let the build run until completed (hopefully no errors). If errors occur please report them.
 
@@ -91,7 +91,7 @@ Most docker projects provide an image build for loading directly, and a separate
 If loading a saved version of the image rather than building it, use docker's load command to read in the image from a gzipped tar file and its image tag like so:
 
 ```
-$ docker load < /path/to/flash-docker-rdp/dist/<name of image file>_2021-04-18.tar.gz
+$ docker load < /path/to/<name of image file>_2021-04-18.tar.gz
 ```
 NOTE: the expanded image size is about 1.8 GB, but reduces to around 650 MB when compressed by zip or gzip.
 
