@@ -1,11 +1,11 @@
 # Bitcoin Docker Image / Container
 
 Builds bitcoin core cloned from git source on an Ubuntu 20.04.2 LTS with:
-bitcoin:
+### bitcoin:
 - wallet disabled (see Dockerfile config for bitcoin)
 - GUI disabled (see Dockerfile)
 - debug symbols removed from bitcoin binaries
-docker:
+### docker:
 - vol mounted to store/read blockchain data outside the container runtime
 - bitcoin:bitcoin user and group created
 - less and tiny-vim installed
