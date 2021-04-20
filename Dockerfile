@@ -62,8 +62,6 @@ RUN cd /tmp \
     && git clone --recursive https://github.com/bitcoin/bitcoin.git \
     && cd /tmp/bitcoin \
     && export CFLAGS="-O2 -fstack-protector-strong -Wformat -Werror=format-security" \
-    && export LDFLAGS="-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wl,--as-needed" \
-    && export CPPFLAGS="-Wdate-time -D_FORTIFY_SOURCE=2" \
     && ./autogen.sh \
     && ./configure --disable-bench \
        --disable-wallet \
@@ -75,7 +73,7 @@ RUN cd /tmp \
        --build=x86_64-linux-gnu \
        --prefix=${prefix} \
        --includedir=${prefix}/include --mandir=${prefix}/share/man --infodir=${prefix}/share/info --sysconfdir=/etc \
-    && make -j"$(($(nproc)+1))" \
+    && make \
     && make install \
     && mkdir -p /var/lib/bitcoind /var/run/bitcoind /etc/bitcoin \
     && cp /tmp/bitcoin/contrib/init/bitcoind.conf /etc/bitcoin/ \
