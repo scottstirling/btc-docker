@@ -113,6 +113,16 @@ root@647d2c17a604:/tmp# su - bitcoin
 bitcoin@647d2c17a604:~$
 ```
 
+Use docker compose down to stop the container cleanly (and cleaning up if a host crashes):
+
+```
+$ docker compose down
+[+] Running 1/3
+ ⠿ Container btc-docker_btc-docker_1  Removed                             4.6s
+ ⠿ Network "btc-docker_default"       Removed                             4.3s
+ ⠿ Network "btc-docker_bitcoind"      Removed                             2.2s
+```
+
 ### VPN Note
 The docker container has access to the same network as its host, including VPN or IPSEC tunnels.
 No separate VPN setup or install is needed in the container.  VPN must be connected on the host when the container starts, 
