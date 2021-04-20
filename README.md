@@ -42,17 +42,9 @@ docker image ls
 After the image has been built (or loaded, see below) docker tools should show a newly added image in addition to any others you may have, as shown below:
 
 ```
-$ docker-compose images
-              Container                      Repository         Tag       Image Id       Size
------------------------------------------------------------------------------------------------
-btc_docker_1                                        btc-docker   latest  e26c93965306  6.01GB
-```
-or:
-
-```
 $ docker image ls
-REPOSITORY            TAG          IMAGE ID       CREATED       SIZE
-btc-docker           latest    e26c93965306   7 minutes ago   6.01GB
+REPOSITORY   TAG       IMAGE ID       CREATED             SIZE
+btc-docker   latest    627e5b5c8133   About an hour ago   1.74GB
 ```
 
 ## Running a container with the image
@@ -76,11 +68,8 @@ Check the process is up via the command line:
 $ docker-compose ps
                  Name                       Command       State           Ports
 ----------------------------------------------------------------------------------------
-btc_docker_1                             /sbin/start.sh   Up      0.0.0.0:3390->3390/tcp
+btc_docker_1                             /sbin/start.sh   Up      0.0.0.0:8333->8333/tcp
 ```
-Now that the container is running you can use any Remote Desktop client to connect to the host where the container is running, and the port that the container has mapped to the host to listen for RDP clients. Set the RDP Client "PC Name" to localhost:3390. 
-
-When logging in via RDP you will be prompted for login credentials.  Use the test credentials described below, e.g., btcadmin  w/password b1tc01n. 
 
 From the host outside of the container one can also use the docker exec command to start an interactive ssh session between the host and the root user on the running container.  Note: any changes made to a running container will be lost when it is shut down, unless the container itself is exported and saved (which can be done but is not described here; please see docker help for more info if interested).
 
