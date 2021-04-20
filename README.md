@@ -32,11 +32,11 @@ To build the Docker image locally:
  * In a terminal (or PowerShell or Cygwin on Windows), cd into the project directory.
 
 ```
-docker-compose build
+$ docker-compose build
 ```
 or (with latest compose incorporated into docker cli):
 ```
-docker compose build
+$ docker compose build
 ```
 
 [output will update to console for 40 - 90 minutes to build the image, depending on network and host resources]
@@ -46,7 +46,7 @@ Let the build run until completed (hopefully no errors). If errors occur please 
 Now the image will have been built locally to your docker environment/installation and can be run in a container or saved to a tar file (see below for steps to run containers and optionally save an image).  Note: the built image does not appear as output in the project, but rather will be stored in docker's internal, layered file system, which you can insepct via commands such as:
 
 ```
-docker image ls
+$ docker image ls
 ```
 
 After the image has been built (or loaded, see below) docker tools should show a newly added image in addition to any others you may have, as shown below:
