@@ -105,10 +105,11 @@ btc-docker_1  | Hello, from bitcoind-docker container
 
 From the container's parent host one can use the docker exec command to start an interactive ssh session between the host and the root user on the running container.  Note: any changes made to a running container will be lost when it is shut down, unless the container itself is exported and saved (which can be done but is not described here; please see docker help for more info if interested).
 
-Using docker exec to obtain a bash shell into the container locally:
+Using docker exec to obtain a bash shell into the container locally, then can su - bitcoin:
 ```
 $ docker exec -it btc-docker_btc-docker_1 bash
-root@647d2c17a604:/tmp#
+root@647d2c17a604:/tmp# su - bitcoin
+bitcoin@647d2c17a604:~$
 ```
 
 ### VPN Note
