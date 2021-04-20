@@ -59,7 +59,7 @@ The output of a successful startup should look something like below with a uniqu
 
 ```
 $ docker-compose up -d
-Creating network "btc-docker_local" with the default driver
+Creating network "btc-docker_bitcoind" with the default driver
 Creating btc-docker_1 ... done
 ```
 Check the process is up via the command line:
@@ -101,13 +101,11 @@ Once loaded, you can use the project docker-compose.yml and docker-compose.overr
 
 The test user logins are:
 
-* btcadmin
+* bitcoin
 * scott
 * mallesh
 
-Their test passwords are all the same and are exposed in the Dockerfile build commands: p1v0tr33
-
-The test users are all in a Linux group called "TBD" in the docker container. These are for demo purposes.  The authentication can be tied into LDAP or other identity management solutions.
+Their test passwords are all the same and are exposed in the Dockerfile build commands: b1tc01n
 
 ## Description of files in this docker project:
 
@@ -123,4 +121,4 @@ The test users are all in a Linux group called "TBD" in the docker container. Th
 
 5. docker-save.sh - example wrapper script to run the docker save command and output a gzipped and time-stamped tar file of the image, which can be backed up or transported elsewhere to load without going through the build process. 
 
-9. README.md and README.pdf - markdown formatted source and PDF rendering of this README.
+9. README.md - markdown formatted source of this README.
