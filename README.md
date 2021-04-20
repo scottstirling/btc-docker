@@ -49,12 +49,12 @@ Now the image will have been built locally to your docker environment/installati
 $ docker image ls
 ```
 
-After the image has been built (or loaded, see below) docker tools should show a newly added image in addition to any others you may have, as shown below:
+After an image has been built (or loaded, see below), docker tools will show a newly added image in addition to any others you may have, as shown below:
 
 ```
-$ docker image ls
-REPOSITORY   TAG       IMAGE ID       CREATED             SIZE
-btc-docker   latest    627e5b5c8133   About an hour ago   1.74GB
+$ docker compose ps
+NAME                      SERVICE             STATUS              PORTS
+btc-docker_btc-docker_1   btc-docker          running             127.0.0.1:8332->8332/tcp, 0.0.0.0:8333->8333/tcp
 ```
 
 ## Running a container with the image
@@ -94,14 +94,14 @@ Check the log output:
 ```
 $ docker compose logs
 btc-docker_1  | Environment info:
-btc-docker_1  | hostname: 647d2c17a604
-btc-docker_1  | ip address: 172.21.0.2
+btc-docker_1  | hostname: 3aa785dde732
+btc-docker_1  | ip address: 172.24.0.2
 btc-docker_1  | TZ: America/New_York
-btc-docker_1  | date: Mon Apr 19 21:32:25 EDT 2021
+btc-docker_1  | date: Tue Apr 20 02:13:56 EDT 2021
 btc-docker_1  | operating system: Ubuntu 20.04.2 LTS \n \l
-btc-docker_1  | kernel: Linux 647d2c17a604 5.10.25-linuxkit #1 SMP Tue Mar 23 09:27:39 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
-btc-docker_1  | bitcoind version: Bitcoin Core version v21.99.0-13d27b452d4b
-btc-docker_1  | Hello, from bitcoind-docker container
+btc-docker_1  | kernel: Linux 3aa785dde732 5.10.25-linuxkit #1 SMP Tue Mar 23 09:27:39 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+btc-docker_1  | bitcoind version: Bitcoin Core version v21.99.0-de77cbc9d855
+btc-docker_1  | Hello, from btc-docker container
 ```
 
 From the container's parent host one can use the docker exec command to start an interactive ssh session between the host and the root user on the running container.  Note: any changes made to a running container will be lost when it is shut down, unless the container itself is exported and saved (which can be done but is not described here; please see docker help for more info if interested).
@@ -109,8 +109,8 @@ From the container's parent host one can use the docker exec command to start an
 Using docker exec to obtain a bash shell into the container locally, then can su - bitcoin:
 ```
 $ docker exec -it btc-docker_btc-docker_1 bash
-root@647d2c17a604:/tmp# su - bitcoin
-bitcoin@647d2c17a604:~$
+root@3aa785dde732:/tmp# su - bitcoin
+bitcoin@3aa785dde732:~$
 ```
 
 Use docker compose down to stop the container cleanly (and cleaning up if a host crashes):
