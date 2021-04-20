@@ -1,14 +1,16 @@
 # Bitcoin Docker Image / Container
 
 Builds bitcoin core cloned from git source on an Ubuntu 20.04.2 LTS with:
+
 ### bitcoin:
 - wallet disabled (see Dockerfile config for bitcoin)
 - GUI disabled (see Dockerfile)
 - debug symbols removed from bitcoin binaries
+
 ### docker:
 - vol mounted to store/read blockchain data outside the container runtime
 - bitcoin:bitcoin user and group created
-- less and tiny-vim installed
+- less, net-tools and tiny-vim installed for troubleshooting convenience
 
 ## Requirements
  * DockerDesktop 3.3.1 (or newer) for OS X or Windows (or docker 20.10.6 on Linux)
