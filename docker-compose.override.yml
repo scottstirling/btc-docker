@@ -1,0 +1,9 @@
+version: "3.8"
+services:
+
+  bitcoind:
+    # set default timezone for the container runtime.
+    environment:
+      - TZ=${CONTAINER_TZ:-America/Chicago}
+    ports:
+      - "${HOST_PORT:-8333}:${CONTAINER_PORT:-8333}"

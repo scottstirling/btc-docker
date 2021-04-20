@@ -111,9 +111,9 @@ Their test passwords are all the same and are exposed in the Dockerfile build co
 
 1. Dockerfile - specifies how to build the image and some custom tasks to setup users and configuration. See code and comments in Dockerfile for more details.
 
-2. docker-compose.yml - main entry-point to build the image and run the container via docker-compose command line; replaces previous release's docker-build.sh and docker-run.sh.
+2. docker-compose.yml - main entry-point to build the image and run the container via docker-compose command line.
 
-3. docker-compose.override.yml - example, customizable docker-compose override settings, such as the host port or default container time zone.
+3. docker-compose.override.yml - example, customizable docker-compose override settings, such as the host port, data volumes or default container time zone.
 
 2. scripts/start.sh - included in the image. echoes some debug lines and starts the xrdp service in the container and tails /dev/null (a Docker hack / convention used to keep the container running indefinitely). This file is executable 755, copied into the built image under /sbin.
 
