@@ -1,16 +1,16 @@
 # Bitcoin Docker Image / Container
 
 ## Requirements
- * DockerDesktop 2.5.0.1 (or newer) for OS X or Windows (or docker 19.03.14 on Linux)
- * Building the image from source project files requires the host running the build to have access to the Internet to pull down a base Ubuntu image and packages to install for Flash and Firefox (see the Dockerfile for details).
+ * DockerDesktop 3.3.1 (or newer) for OS X or Windows (or docker 20.10.6 on Linux)
+ * Building the image from source project files requires the host running the build to have access to the Internet to pull down a base Ubuntu image and packages to install (see the Dockerfile for details).
  * To build and run, the docker and docker-compose command line tools (which are included with Docker Desktop) should show these minimum versions:
 
 ```
-	$ docker -v
-     Docker version 20.10.5, build 55c4c88
-	
-	$ docker-compose -v
-         docker-compose version 1.29.0, build 07737305
+$ docker -v
+Docker version 20.10.5, build 55c4c88
+
+$ docker-compose -v
+docker-compose version 1.29.0, build 07737305
 ```
  
 ## Building the image
@@ -86,7 +86,7 @@ Use Windows PowerShell to run the commands and scripts on Windows docker hosts.
 ## Loading a pre-built image from a saved image
 Docker can load an image from a tar file instead of building it dynamically.
 
-Most docker projects provide an image build for loading directly, and a separate project with assets to build the image or customize it.  Flash licensing and security requirements in most organizations have led us to recommend building the image yourself locally for license compliance and transparency. You can save and then load your own pre-built image from the project as described above.
+Most docker projects provide an image build for loading directly, and a separate project with assets to build the image or customize it.  It is possible to save to a tgz and then load your own pre-built image from the project as described above.
 
 If loading a saved version of the image rather than building it, use docker's load command to read in the image from a gzipped tar file and its image tag like so:
 
