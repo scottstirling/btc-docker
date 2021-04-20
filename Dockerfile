@@ -73,7 +73,8 @@ RUN cd /tmp \
     && make \
     && make install \
     && mkdir -p /var/lib/bitcoind /var/run/bitcoind /etc/bitcoin \
-    && cp /tmp/bitcoin/contrib/init/bitcoind.conf /etc/bitcoin/bitcoin.conf \
+    && cp /tmp/bitcoin/contrib/init/bitcoind.conf /etc/bitcoin/ \
+    && chown -R bitcoin:bitcoin /var/lib/bitcoind /var/run/bitcoind /etc/bitcoin \
     && rm -fr /tmp/bitcoin
 
 

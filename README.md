@@ -69,8 +69,9 @@ The output of a successful startup should look something like below with a uniqu
 
 ```
 $ docker compose up -d
-[+] Running 1/1
- ⠿ Container btc-docker_btc-docker_1  Started                                   3.0s
+[+] Running 2/2
+ ⠿ Network "btc-docker_bitcoind"      Created                                    4.5s
+ ⠿ Container btc-docker_btc-docker_1  Started                                    2.8s
 ```
 
 Check the process is up via the command line:
