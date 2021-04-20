@@ -2,12 +2,12 @@
 # NOTE: script must run as root or with root permissions
 
 # Global Variables
-# original test login accounts for testing / demo
-users="bitcoin scott mallesh"
+# test login accounts for testing / demo
+users="bitcoin bitcointest"
 
 # If you need more test logins, set TEST_USER_BASENAME and TEST_USER_COUNT as needed to prepare more test accounts in the image
 TEST_USER_COUNT=0
-TEST_USER_BASENAME="theflash"
+TEST_USER_BASENAME="tester"
 # test user default container login password 
 TEST_USER_PASSWORD="b1tc01n"
 # test user account rdp shared group

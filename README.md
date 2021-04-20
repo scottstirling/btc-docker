@@ -20,20 +20,18 @@ To build the Docker image locally:
  * In a terminal (or PowerShell or Cygwin on Windows), cd into the project directory.
 
 ```
-export DOCKER_BUILDKIT=1 COMPOSE_DOCKER_CLI_BUILD=1
-
 docker-compose build
 ```
+or (with latest compose incorporated into docker cli):
+```
+docker compose build
+```
+
 [output will update to console for 40 - 90 minutes to build the image, depending on network and host resources]
 
 Let the build run until completed (hopefully no errors). If errors occur please report them.
 
 Now the image will have been built locally to your docker environment/installation and can be run in a container or saved to a tar file (see below for steps to run containers and optionally save an image).  Note: the built image does not appear as output in the project, but rather will be stored in docker's internal, layered file system, which you can insepct via commands such as:
-
-```
-docker-compose images
-```
-or 
 
 ```
 docker image ls
@@ -50,29 +48,56 @@ btc-docker   latest    627e5b5c8133   About an hour ago   1.74GB
 ## Running a container with the image
 Whether the image was built or loaded, it can be run the same way, either via command line or wrapper scripts for the command line.
 
-To run the Docker built image in a local container from the command line:
+To run the Docker built image in a local container from the command line in the background use the -d arg after the up command:
 
 ```
 $ docker-compose up -d
 ```
-The output of a successful startup should look something like below with a unique hash for your local CONTAINER ID instance:
+The output of a successful startup should look something like below with a unique ID for your local CONTAINER ID instance:
 
 ```
-$ docker-compose up -d
-Creating network "btc-docker_bitcoind" with the default driver
-Creating btc-docker_1 ... done
+$ docker compose up -d
+[+] Running 1/1
+ ⠿ Container btc-docker_btc-docker_1  Started                                   3.0s
 ```
+
 Check the process is up via the command line:
 
 ```
-$ docker-compose ps
-                 Name                       Command       State           Ports
-----------------------------------------------------------------------------------------
-btc_docker_1                             /sbin/start.sh   Up      0.0.0.0:8333->8333/tcp
+$ docker compose ps
+NAME                      SERVICE             STATUS              PORTS
+btc-docker_btc-docker_1   btc-docker          running             0.0.0.0:8333->8333/tcp, 8332/tcp
+```
+
+or 
+
+```
+$ docker compose ls
+NAME                STATUS
+btc-docker          running(1)
+```
+
+Check the log output:
+```
+$ docker compose logs
+btc-docker_1  | Environment info:
+btc-docker_1  | hostname: 647d2c17a604
+btc-docker_1  | ip address: 172.21.0.2
+btc-docker_1  | TZ: America/New_York
+btc-docker_1  | date: Mon Apr 19 21:32:25 EDT 2021
+btc-docker_1  | operating system: Ubuntu 20.04.2 LTS \n \l
+btc-docker_1  | kernel: Linux 647d2c17a604 5.10.25-linuxkit #1 SMP Tue Mar 23 09:27:39 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+btc-docker_1  | bitcoind version: Bitcoin Core version v21.99.0-13d27b452d4b
+btc-docker_1  | Hello, from bitcoind-docker container
 ```
 
 From the host outside of the container one can also use the docker exec command to start an interactive ssh session between the host and the root user on the running container.  Note: any changes made to a running container will be lost when it is shut down, unless the container itself is exported and saved (which can be done but is not described here; please see docker help for more info if interested).
 
+Using docker exec to obtain a bash shell into the container locally:
+```
+$ docker exec -it btc-docker_btc-docker_1 bash
+root@647d2c17a604:/tmp#
+```
 
 ### VPN Note
 The docker container has access to the same network as its host, including VPN or IPSEC tunnels.
@@ -102,10 +127,9 @@ Once loaded, you can use the project docker-compose.yml and docker-compose.overr
 The test user logins are:
 
 * bitcoin
-* scott
-* mallesh
+* bitcointester
 
-Their test passwords are all the same and are exposed in the Dockerfile build commands: b1tc01n
+Their test passwords will come out set the same and are exposed in the Dockerfile build commands and test-users.sh script: b1tc01n
 
 ## Description of files in this docker project:
 
@@ -115,9 +139,9 @@ Their test passwords are all the same and are exposed in the Dockerfile build co
 
 3. docker-compose.override.yml - example, customizable docker-compose override settings, such as the host port, data volumes or default container time zone.
 
-2. scripts/start.sh - included in the image. echoes some debug lines and starts the xrdp service in the container and tails /dev/null (a Docker hack / convention used to keep the container running indefinitely). This file is executable 755, copied into the built image under /sbin.
+2. scripts/start.sh - included in the image. echoes some debug lines and (optionally) starts the bitcoind service in the container and tails /dev/null (a Docker hack / convention used to keep the container running indefinitely). This file is executable 755, copied into the built image under /sbin.
 
-4. docker-run.sh - example wrapper script to run the container locally and set additional variables to modify runtime.  This script formerly wrapped the docker command but now wraps the docker-compose command.
+4. docker-run.sh - example wrapper script to run the container locally and set additional variables to modify runtime.  This script is a wrapper to the docker-compose command for local use..
 
 5. docker-save.sh - example wrapper script to run the docker save command and output a gzipped and time-stamped tar file of the image, which can be backed up or transported elsewhere to load without going through the build process. 
 

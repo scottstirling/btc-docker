@@ -4,6 +4,6 @@ services:
   btc-docker:
     # set default timezone for the container runtime.
     environment:
-      - TZ=${CONTAINER_TZ:-America/Chicago}
-    ports:
-      - "${HOST_PORT:-8333}:${CONTAINER_PORT:-8333}"
+      - TZ=${CONTAINER_TZ:-America/New_York}
+    #ports:
+    #  - "${HOST_PORT:-8333}:${CONTAINER_PORT:-8333}"
