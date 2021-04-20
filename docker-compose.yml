@@ -7,7 +7,7 @@ services:
     image: btc-docker:latest
     ports:
       - "${HOST_PORT:-8333}:${CONTAINER_PORT:-8333}"
-      # - "${HOST_PORT:-8332}:${CONTAINER_PORT:-8332}"
+      - "127.0.0.1:${HOST_PORT:-8332}:${CONTAINER_PORT:-8332}"
     environment:
       - TZ=${CONTAINER_TZ:-America/New_York}
     volumes:

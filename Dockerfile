@@ -65,12 +65,17 @@ RUN cd /tmp \
     && export LDFLAGS="-Wl,-Bsymbolic-functions -Wl,-z,relro -Wl,-z,now -Wl,--as-needed" \
     && export CPPFLAGS="-Wdate-time -D_FORTIFY_SOURCE=2" \
     && ./autogen.sh \
-    && ./configure --with-incompatible-bdb --enable-hardening \
-       --disable-wallet --without-gui --without-miniupnpc \
-        --build=x86_64-linux-gnu \
-        --prefix=${prefix} \
-        --includedir=${prefix}/include --mandir=${prefix}/share/man --infodir=${prefix}/share/info --sysconfdir=/etc \
-    && make \
+    && ./configure --disable-bench \
+       --disable-wallet \
+       --with-incompatible-bdb \
+       --enable-hardening \
+       --without-gui \
+       --without-miniupnpc \
+       --without-natpmp \
+       --build=x86_64-linux-gnu \
+       --prefix=${prefix} \
+       --includedir=${prefix}/include --mandir=${prefix}/share/man --infodir=${prefix}/share/info --sysconfdir=/etc \
+    && make -j"$(($(nproc)+1))" \
     && make install \
     && mkdir -p /var/lib/bitcoind /var/run/bitcoind /etc/bitcoin \
     && cp /tmp/bitcoin/contrib/init/bitcoind.conf /etc/bitcoin/ \
