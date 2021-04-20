@@ -4,6 +4,7 @@ services:
   btc-docker:
     build:       
       context: .
+      shm_size: '2gb'
     image: btc-docker:latest
     ports:
       - "${HOST_PORT:-8333}:${CONTAINER_PORT:-8333}"
