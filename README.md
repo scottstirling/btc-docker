@@ -49,12 +49,12 @@ Now the image will have been built locally to your docker environment/installati
 $ docker image ls
 ```
 
-After an image has been built (or loaded, see below), docker tools will show a newly added image in addition to any others you may have, as shown below:
+After an image has been built (or loaded, see below), docker image inventory will show a newly added image in addition to any others you may have, as shown below:
 
 ```
-$ docker compose ps
-NAME                      SERVICE             STATUS              PORTS
-btc-docker_btc-docker_1   btc-docker          running             127.0.0.1:8332->8332/tcp, 0.0.0.0:8333->8333/tcp
+$ docker image ls
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+btc-docker   latest    40382d55e7ea   25 minutes ago   1.48GB
 ```
 
 ## Running a container with the image
